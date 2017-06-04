@@ -1,0 +1,65 @@
+<!-- VIEW -->
+<div class="container">
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search By Name" ng-model="searchName">
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <tr>
+        <td>
+          <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            Employee Name
+            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'address'; sortReverse = !sortReverse">
+          Address 
+            <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a  ng-click="sortType = 'emp_no'; sortReverse = !sortReverse">
+          Employee Ssn 
+            <span ng-show="sortType == 'emp_no' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'emp_no' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>Edit</td>
+      </tr>
+
+    </thead>
+    
+    <tbody>
+     <tr  ng-repeat="emp in employeeList | orderBy:sortType:sortReverse | filter:searchName" ng-include="getTemplate(emp);"></tr>
+    </tbody>
+    </table>
+        <script type="text/ng-template" id="display">
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.address }}</td>
+            <td>{{ emp.emp_no }}</td>
+            <td>
+                <button type="button" ng-click="editEmployee(emp);" class="btn btn-primary">Edit</button>
+                
+            </td>
+        </script>
+         
+        <script type="text/ng-template" id="edit">
+        <td><input type="text" ng-model=selected.name class="form-control input-sm"/></td>
+        <td><input type="text" ng-model=selected.address class="form-control input-sm"/></td>
+        <td><input type="number" ng-model=selected.emp_no class="form-control input-sm"/></td>
+        <td>
+            <button type="button" class="btn btn-primary" ng-click="updateEmployee()">Save</button>
+            <button type="button" class="btn btn-danger" ng-click="reset()">Cancel</button>
+        </td>
+        </script>
+</div>

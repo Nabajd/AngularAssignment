@@ -1,0 +1,160 @@
+<div>
+    <form class="form-horizontal" name="reg_form" ng-submit="addUser();">
+      <fieldset>
+      
+        <!-- Form Name -->
+        <legend>Personal Information</legend>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Name</label>
+          <div class="col-md-3  inputGroupContainer">
+            <div class="input-group"> 
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input  name="firstname" placeholder="First Name" class="form-control"  type="text" ng-model="user.firstname" required>
+
+            </div>
+            <span style="color:red" ng-show="reg_form.firstname.$dirty && reg_form.firstname.$invalid">
+            <span ng-show="reg_form.firstname.$error.required">First Name Required</span>
+            </span>
+          </div>
+          
+          <div class="col-md-3  inputGroupContainer">
+            <input  name="middlename" placeholder="Middle Name" class="form-control"  type="text" ng-model="user.middlename">
+          </div>
+
+          <div class="col-md-3  inputGroupContainer">
+            <input  name="lastname" placeholder="Last Name" class="form-control"  type="text" ng-model="user.lastname" required>
+            <span style="color:red" ng-show="reg_form.lastname.$dirty && reg_form.lastname.$invalid">
+            <span ng-show="reg_form.lastname.$error.required">Last Name Required</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Email</label>
+          <div class="col-md-3  inputGroupContainer">
+            <div class="input-group"> 
+            <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+            <input  name="email" placeholder="Email" class="form-control"  type="email" ng-model="user.email" required>
+          </div>
+            <span style="color:red" ng-show="reg_form.email.$dirty && reg_form.email.$invalid">
+            <span ng-show="reg_form.email.$error.email">Invalid email address.</span>
+            <span ng-show="reg_form.email.$error.required">Email Required</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Phone</label>
+          <div class="col-md-3  inputGroupContainer">
+            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+              <input name="phone" placeholder="+91-8402872404" class="form-control" type="number" ng-model="user.phone" ng-minlength="10" 
+                   ng-maxlength="10" required>
+            </div>
+            <span style="color:red" ng-show="reg_form.phone.$dirty && reg_form.phone.$invalid">
+            <span ng-show="reg_form.phone.$error.number">Invalid Phone number</span>
+            <span ng-show="reg_form.phone.$error.required">Phone number Required</span>
+            <span ng-show="((reg_form.phone.$error.minlength ||
+                           reg_form.phone.$error.maxlength) && 
+                           reg_form.phone.$dirty) ">
+                           Phone number should be 10 digits
+            </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-md-2 control-label">Address</label>
+        <div class="col-md-3  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input name="address" ng-model="user.address" placeholder="Address" class="form-control" type="text" required>
+          </div>
+          <span style="color:red" ng-show="reg_form.address.$dirty && reg_form.address.$invalid">
+            
+            <span ng-show="reg_form.address.$error.required">Address Required</span>
+            </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">City</label>
+        <div class="col-md-3  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input name="city" ng-model="user.city" placeholder="city" class="form-control"  type="text" required>
+          </div>
+          <span style="color:red" ng-show="reg_form.city.$dirty && reg_form.city.$invalid">
+            <span ng-show="reg_form.city.$error.required">City Required</span>
+            </span>
+        </div>
+      </div>
+      
+      <!-- Select Basic -->
+      
+      <div class="form-group">
+        <label class="col-md-2 control-label">State</label>
+        <div class="col-md-3 selectContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select name="state" ng-model="user.state" class="form-control selectpicker" required>
+              <option disabled="disabled">Please select your state</option>
+              <option ng-repeat="c in stateList">{{c.name}}</option>
+              
+            </select>
+          </div>
+          <!-- <span style="color:red" ng-show="reg_form.state.$dirty && reg_form.state.$invalid"> -->
+            <!-- <span ng-show="reg_form.state.$error.required">State Required</span> -->
+            <span style="color:red" ng-show="reg_form.state.$touched && reg_form.state.$pristine">State Required</span>
+            <!-- </span> -->
+   
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Zip Code</label>
+        <div class="col-md-3  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input name="zip" ng-model="user.zip" placeholder="Zip Code" class="form-control"  type="number" required ng-minlength="6" ng-maxlength="6">
+          </div>
+          <span style="color:red" ng-show="reg_form.zip.$dirty && reg_form.zip.$invalid">
+            <span ng-show="((reg_form.zip.$error.minlength ||
+                           reg_form.zip.$error.maxlength) && 
+                           reg_form.zip.$dirty) ">
+                           Zip should be 6 digits
+            </span>
+            <span ng-show="reg_form.zip.$error.required">Zip Required</span>
+            <span ng-show="reg_form.zip.$error.number">Not Valid Zip</span>
+            </span>
+        </div>
+      </div>
+      
+        <!-- Text area -->
+      
+      <div class="form-group">
+        <label class="col-md-2 control-label">About </label>
+        <div class="col-md-3  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+            <textarea class="form-control" name="comment" ng-model="user.comment" placeholder="About " required></textarea>
+          </div>
+          <span style="color:red" ng-show="reg_form.comment.$dirty && reg_form.comment.$invalid">
+              <span ng-show="reg_form.comment.$error.required">Comment Required</span>
+          </span>
+        </div>
+        
+       </div>
+
+      <div class="form-group">
+      <label class="col-md-2 control-label"></label>
+        <div class="col-md-3  inputGroupContainer">
+          <input type="submit" class="btn btn-primary"
+            ng-disabled="reg_form.$invalid">
+        </div>
+        
+      </div>
+
+      
+
+
+
+      </fieldset>
+    </form>
+</div>

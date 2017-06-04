@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html ng-app="app">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angular Assignment</title>
+<link href="content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="content/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+<link href="content/css/style.css" rel="stylesheet" type="text/css" />
+<link href="content/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+a{
+cursor: pointer;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+    <div class="jumbotron" ng-controller="indexCtrl">
+      
+      <h2 style="text-align: center;">AngularJs Assignment</h2>
+
+      <div ng-show="isInRegPage" style="text-align: center;"><a ng-click="change();" href="#!/viewDetails" class="btn btn-link"><h3 >Go to View Details</h3></a></div>
+      <div ng-show="!isInRegPage" style="text-align: center;"><a ng-click="change();" href="#!/newAccount" class="btn btn-link"><h3 >Go to Registration</h3></a></div>
+    </div>
+
+    <div class="container">
+     <!-- view change when route  -->
+      <div ng-view=""></div>
+    
+    </div>
+
+    <!--Scripts -->
+    
+    <script src="scripts/jquery-3.2.1.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src='scripts/bootstrap.min.js'></script>
+
+    
+    <!--app main script-->
+
+    <script src="app/app.js"></script>
+
+    <!-- Services-->
+    <script src='app/services/RegistrationService.js'></script>
+
+   
+
+    <!-- Controllers -->
+    <script src="app/controller/newAccountController.js"></script>
+    <script src="app/controller/viewDetailsCtrl.js"></script>
+    <script src="app/controller/indexCtrl.js"></script>
+    
+
+
+  </body>
+</html>
